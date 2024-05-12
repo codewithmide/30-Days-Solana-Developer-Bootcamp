@@ -1,6 +1,6 @@
 # Submission
 
-Your submission for the first task should be here
+Submission for the first task should be here
 
 | Date | Name | Github Username | Submission Link |
 | ------ | ------ | ------ |  ------ |
