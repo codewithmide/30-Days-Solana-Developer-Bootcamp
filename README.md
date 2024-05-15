@@ -26,3 +26,4 @@ This bootcamp will equip you with the skills to build decentralized applications
 | Date | Material | Location |
 | ------ | ------ | ------ |
 | May 13, 2024 | [Introduction to Web3 and Solana](https://docs.google.com/presentation/d/1B5xz0xqe-oT_iLC-JQPc3Qh__QzK8mtvEoNc8YMwarE/edit?usp=sharing) | Google Meet |
+| May 15, 2024 | [Cryptography in Solana](https://docs.google.com/presentation/d/14viYzsXcM7DqrDLXBz1nQ0Bery8kN36zgWB0jp_eix0/edit?usp=sharing) | Google Meet |
