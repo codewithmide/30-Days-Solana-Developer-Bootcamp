@@ -1,8 +1,8 @@
-# Welcome to the 30-Day Solana Developer Bootcamp
+# The 30-Day Solana Developer Bootcamp
 
-This bootcamp will equip you with the skills to build decentralized applications (dApps) on the Solana blockchain. Over the next 30 days, you'll gain a strong foundation in Solana's core concepts and client-side development.
+This bootcamp will equip Soll with the skills to build decentralized applications (dApps) on the Solana blockchain. Over the next 30 days, I'll be gaining a strong foundation in Solana's core concepts and client-side development.
 
-## What you'll learn
+## What I'll learn
 
 - **Solana Fundamentals**: Deep dive into the architecture, functionalities, and advantages of Solana.
 - **Building dApps**: Explore on-chain vs. off-chain functionalities, tokenization on Solana, and dApp design patterns.
@@ -17,9 +17,8 @@ This bootcamp will equip you with the skills to build decentralized applications
 
 ## Getting Started
 
-- Join the Bootcamp by reaching out to me on [Twitter/X](https://twitter.com/Olumide______).
-- Star this GitHub repository to track assignments and access resources.
-- Attend the Welcome Session (details will be shared in the group chat).
+- I'll be sharing my major milestone on [Twitter/X](https://twitter.com/soll8348).
+- Star this GitHub repository to track my assignments and access resources I'd share.
 
 ## Materials
 
