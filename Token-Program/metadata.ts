@@ -1,28 +1,26 @@
-import "dotenv/config"
-import { getKeypairFromEnvironment, getExplorerLink } from "@solana-developers/helpers"
-import { Connection, clusterApiUrl, PublicKey, Transaction, sendAndConfirmTransaction } from "@solana/web3.js"
+import "dotenv/config";
+import { getKeypairFromEnvironment, getExplorerLink } from "@solana-developers/helpers";
+import { Connection, PublicKey, Transaction, clusterApiUrl, sendAndConfirmTransaction } from "@solana/web3.js";
 import { createCreateMetadataAccountV3Instruction } from "@metaplex-foundation/mpl-token-metadata";
 
-const user = getKeypairFromEnvironment("SECRET_KEY");
 const connection = new Connection(clusterApiUrl("devnet"));
+const user = getKeypairFromEnvironment("SECRET_KEY");
 
-console.log(
-    `🔑 We've loaded our keypair securely, using an env file! Our public key is: ${user.publicKey.toBase58()}`
-);
+console.log(`Connection estabished and this is my public key ${user.publicKey.toBase58()}`)
 
 const TOKEN_METADATA_PROGRAM_ID = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
 
-const tokenMintAccount = new PublicKey("7ETjLBDum3qGdBijYnhT3TBPgwyTEq2h6tsQ1V8Hv4Vf");
+const tokenMintAccount = new PublicKey("7592SNYRVqy95Bk3Uhk3HW9kurNPGAMtJnomz1KpZSbZ");
 
 const metadataData = {
-    name: "Superteam Uyo Devs",
+    name: "SuperteamNG Uyo Developers 2024",
     symbol: "SUD",
     uri: "https://arweave.net/HWgDqnvctLLwEJXgfBbWKxwfk26KvPR73EZUPr9m-ls",
     sellerFeeBasisPoints: 0,
     creators: null,
     collection: null,
     uses: null,
-}
+};
 
 const metadataPDAAndBump = PublicKey.findProgramAddressSync(
     [
@@ -31,7 +29,7 @@ const metadataPDAAndBump = PublicKey.findProgramAddressSync(
         tokenMintAccount.toBuffer(),
     ],
     TOKEN_METADATA_PROGRAM_ID
-);
+)
 
 const metadataPDA = metadataPDAAndBump[0];
 
@@ -60,16 +58,14 @@ const transactionSignature = await sendAndConfirmTransaction(
     connection, transaction, [user]
 );
 
-const transactionLink = getExplorerLink(
-    "transaction", transactionSignature, "devnet"
-);
+const transactionLink = getExplorerLink("transaction", transactionSignature, "devnet");
 
-console.log(`✅ Transaction confirmed, explorer link is: ${transactionLink}!`);
+console.log(`Transaction confirmed. Explorer link is ${transactionLink}`);
 
-const tokenMintLink = getExplorerLink(
+const tokenMint = getExplorerLink(
     "address",
     tokenMintAccount.toString(),
     "devnet"
 );
 
-console.log(`✅ Look at the token mint again: ${tokenMintLink}!`);
+console.log(`Token mint confirmed. Explorer link is ${tokenMint}`);

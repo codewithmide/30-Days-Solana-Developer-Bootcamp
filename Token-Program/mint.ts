@@ -1,31 +1,29 @@
-// Minting
-// Transferring tokens from one holder to another
 import { mintTo } from "@solana/spl-token";
+import { getKeypairFromEnvironment, getExplorerLink } from "@solana-developers/helpers";
 import "dotenv/config";
-import { getExplorerLink, getKeypairFromEnvironment } from "@solana-developers/helpers";
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
 const connection = new Connection(clusterApiUrl("devnet"));
-
-const MINOR_UNITS_PER_MAJOR_UNITS = Math.pow(10, 2);
-
 const user = getKeypairFromEnvironment("SECRET_KEY");
 
-const tokenMintAccount = new PublicKey("7ETjLBDum3qGdBijYnhT3TBPgwyTEq2h6tsQ1V8Hv4Vf");
+const UNIT = Math.pow(10, 2);
 
-const recipientAssociatedTokenAccount = new PublicKey(
-    "7ETjLBDum3qGdBijYnhT3TBPgwyTEq2h6tsQ1V8Hv4Vf"
-);
+const tokenMintAccount = new PublicKey("7592SNYRVqy95Bk3Uhk3HW9kurNPGAMtJnomz1KpZSbZ");
+const recipient = new PublicKey("Dot1CjjzWvDFX8Vk6KxenZ47UdhrsMChCNwwKuQhWSMG");
 
-const transactionSignature = await mintTo(
+const transctionSignature = await mintTo(
     connection,
     user,
     tokenMintAccount,
-    recipientAssociatedTokenAccount,
+    recipient,
     user,
-    10 * MINOR_UNITS_PER_MAJOR_UNITS
+    100 * UNIT
+)
+
+const link = getExplorerLink(
+    "address",
+    transctionSignature,
+    "devnet"
 );
 
-const link = getExplorerLink("transaction", transactionSignature, "devnet");
-
-console.log(`✅ Success! Mint Token Transaction: ${link}`);
+console.log(`Successfully minted tokens to this account: ${link}`);
