@@ -17,7 +17,7 @@ const UNIT = Math.pow(10, 2);
 
 console.log(`Attempting to send 10 SUD token to ${recipient.toBase58()}...`);
 
-async function tokenTransfer() {
+async function transferToken() {
   try {
     const sourcedTokenAccount = await getOrCreateAssociatedTokenAccount(
       connection,
@@ -50,4 +50,4 @@ async function tokenTransfer() {
   }
 }
 
-tokenTransfer();
+transferToken();
