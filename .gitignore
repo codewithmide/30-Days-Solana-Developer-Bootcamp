@@ -1,5 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Ignore node_modules directory
+node_modules/
+
+package-lock.json
+
+package.json
+
 # dependencies
 /node_modules
 /.pnp
