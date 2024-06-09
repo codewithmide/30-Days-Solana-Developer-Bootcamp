@@ -1,0 +1,65 @@
+# From https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs#using-the-nodejs-starter-workflow
+name: Node.js CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      # See https://github.com/metaDAOproject/setup-anchor for docs
+      - uses: metadaoproject/setup-anchor@v2.1
+        with:
+          anchor-version: "latest"
+          # Install Solana CLI (beta, required to fix 'ahash' issue)
+          solana-cli-version: "1.18.5"
+          node-version: "20.12.2"
+
+      # git will keep outputting:
+      #   hint: Using 'master' as the name for the initial branch. This default branch name
+      #   hint: is subject to change.
+      # Unless we set this.
+      - name: Set a default branch name for git
+        run: |
+          git config --global init.defaultBranch main
+
+      - name: Print versions and debugging info
+        run: |
+          echo Linux version:
+          lsb_release -a
+          echo
+          echo Solana version:
+          solana -V
+          echo
+          echo Anchor version:
+          anchor -V
+          echo
+          echo build-sbf version:
+          cargo build-sbf --version
+          echo
+          echo Path:
+          echo $PATH | tr ':' '\n' | sort
+
+      # Fixes:
+      #   Error: Unable to read keypair file
+      # during 'anchor test'
+      - name: Make a default keypair
+        run: |
+          solana-keygen new --no-bip39-passphrase
+
+      - name: Test the Movie Review project builds and tests pass
+        run: |
+          npm i
+          echo
+          echo "Building the project..."
+          anchor test 2>&1 | tee -a build.log
+          echo
+          echo "Checking for errors..."
+          cat build.log
+          grep -qiEv 'error|warn' build.log
