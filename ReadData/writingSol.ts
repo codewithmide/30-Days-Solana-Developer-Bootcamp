@@ -15,7 +15,7 @@ import {
     process.exit(1);
   }
   
-  const senderKeypair = getKeypairFromEnvironment("SOLANA_SECRET_KEY");
+  const senderKeypair = getKeypairFromEnvironment("SECRET_KEY");
   
   console.log(`suppliedToPubkey: ${suppliedToPubkey}`);
   
